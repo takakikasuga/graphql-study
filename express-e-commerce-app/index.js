@@ -7,6 +7,7 @@ const typeDefs = gql`
     # Nullを許容しない場合は、「!(nonNullAssertion)」を付与する。
     hello: String!
     products: [Product!]!
+    product(id: ID!): Product
   }
   type Product {
     name: String!
@@ -23,8 +24,12 @@ const resolvers = {
     hello: () => {
       return 'World!!';
     },
-    products: () => {
-      return products;
+    products: () => products,
+    product: (parent, { id: productId }, context) => {
+      console.log('parent', parent);
+      console.log('productId', productId);
+      console.log('context', context);
+      return products.find((product) => product.id === productId) || null;
     }
   }
 };
