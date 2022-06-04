@@ -1,9 +1,6 @@
-const { categories } = require('../data');
-
 module.exports.Product = {
-  category: (parent, _args, _context) => {
-    console.log('parent', parent);
-    console.log('_args', _args);
+  category: (parent, _args, context) => {
+    const { categories } = context;
     const categoryId = parent.categoryId;
     return categories.find((category) => category.id === categoryId);
   }
