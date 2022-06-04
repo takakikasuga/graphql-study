@@ -8,13 +8,14 @@ const typeDefs = gql`
     numberOfAnimals: Int
     price: Float
     isCool: Boolean
+    helloArray: [String!]!
   }
 `;
 
 const resolvers = {
   Query: {
     hello: () => {
-      return null;
+      return 'World!!';
     },
     numberOfAnimals: () => {
       return 10;
@@ -22,7 +23,10 @@ const resolvers = {
     price: () => {
       return 1.111;
     },
-    isCool: () => false
+    isCool: () => false,
+    helloArray: () => {
+      return ['Hello', 'my', 'Friend', null];
+    }
   }
 };
 
