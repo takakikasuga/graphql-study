@@ -1,5 +1,5 @@
 const { ApolloServer, gql } = require('apollo-server');
-const { products } = require('./data');
+const { products, categories } = require('./data');
 
 const typeDefs = gql`
   type Query {
@@ -8,14 +8,21 @@ const typeDefs = gql`
     hello: String!
     products: [Product!]!
     product(id: ID!): Product
+    categories: [Category!]!
+    category(id: ID!): Category
   }
   type Product {
+    id: ID!
     name: String!
     description: String!
     quantity: Int!
     price: Float!
     image: String!
     onSale: Boolean!
+  }
+  type Category {
+    id: ID!
+    name: String!
   }
 `;
 
@@ -29,8 +36,11 @@ const resolvers = {
       console.log('parent', parent);
       console.log('productId', productId);
       console.log('context', context);
-      return products.find((product) => product.id === productId) || null;
-    }
+      return products.find((product) => product.id === productId);
+    },
+    categories: () => categories,
+    category: (_parent, { id: categoryId }, _context) =>
+      categories.find((category) => category.id === categoryId)
   }
 };
 
