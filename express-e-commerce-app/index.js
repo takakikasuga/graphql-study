@@ -2,15 +2,27 @@ const { ApolloServer, gql } = require('apollo-server');
 
 const typeDefs = gql`
   type Query {
-    hello: String
+    # スカラー定義の場合タイプからNullを定義することになる。
+    # Nullを許容しない場合は、「!(nonNullAssertion)」を付与する。
+    hello: String!
+    numberOfAnimals: Int
+    price: Float
+    isCool: Boolean
   }
 `;
 
 const resolvers = {
   Query: {
     hello: () => {
-      return 'World';
-    }
+      return null;
+    },
+    numberOfAnimals: () => {
+      return 10;
+    },
+    price: () => {
+      return 1.111;
+    },
+    isCool: () => false
   }
 };
 
