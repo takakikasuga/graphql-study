@@ -25,7 +25,7 @@ const resolvers = {
     },
     isCool: () => false,
     helloArray: () => {
-      return ['Hello', 'my', 'Friend', null];
+      return ['Hello', 'my', 'Friend'];
     }
   }
 };
