@@ -1,14 +1,19 @@
 const { ApolloServer, gql } = require('apollo-server');
+const { products } = require('./data');
 
 const typeDefs = gql`
   type Query {
     # スカラー定義の場合タイプからNullを定義することになる。
     # Nullを許容しない場合は、「!(nonNullAssertion)」を付与する。
     hello: String!
-    numberOfAnimals: Int
-    price: Float
-    isCool: Boolean
-    helloArray: [String!]!
+    products: [Product!]!
+  }
+  type Product {
+    name: String!
+    description: String!
+    quantity: Int!
+    price: Float!
+    onSale: Boolean!
   }
 `;
 
@@ -17,15 +22,8 @@ const resolvers = {
     hello: () => {
       return 'World!!';
     },
-    numberOfAnimals: () => {
-      return 10;
-    },
-    price: () => {
-      return 1.111;
-    },
-    isCool: () => false,
-    helloArray: () => {
-      return ['Hello', 'my', 'Friend'];
+    products: () => {
+      return products;
     }
   }
 };
