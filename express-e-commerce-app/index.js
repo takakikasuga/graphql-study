@@ -23,24 +23,34 @@ const typeDefs = gql`
   type Category {
     id: ID!
     name: String!
+    products: [Product!]!
   }
 `;
 
 const resolvers = {
   Query: {
-    hello: () => {
-      return 'World!!';
-    },
+    hello: () => 'World!!',
     products: () => products,
-    product: (parent, { id: productId }, context) => {
-      console.log('parent', parent);
+    product: (_parent, { id: productId }, _context) => {
+      console.log('_parent', _parent);
       console.log('productId', productId);
-      console.log('context', context);
+      console.log('_context', _context);
       return products.find((product) => product.id === productId);
     },
     categories: () => categories,
-    category: (_parent, { id: categoryId }, _context) =>
-      categories.find((category) => category.id === categoryId)
+    category: (_parent, { id: categoryId }, _context) => {
+      console.log('categoryId', categoryId);
+      console.log(categories.find((category) => category.id === categoryId));
+      return categories.find((category) => category.id === categoryId);
+    }
+  },
+  Category: {
+    products: (parent, _args, _context) => {
+      console.log('parent', parent);
+      console.log('_args', _args);
+      const categoryId = parent.id;
+      return products.filter((product) => product.categoryId === categoryId);
+    }
   }
 };
 
