@@ -1,7 +1,17 @@
 module.exports.Category = {
-  products: (parent, _args, context) => {
-    const { products } = context;
+  products: (parent, { filter }, { products }) => {
     const categoryId = parent.id;
-    return products.filter((product) => product.categoryId === categoryId);
+    const categoryProducts = products.filter(
+      (product) => product.categoryId === categoryId
+    );
+    let filteredCategoryProducts = categoryProducts;
+    if (filter) {
+      if (filter.onSale === true) {
+        filteredCategoryProducts = filteredCategoryProducts.filter(
+          (product) => product.onSale
+        );
+      }
+    }
+    return filteredCategoryProducts;
   }
 };

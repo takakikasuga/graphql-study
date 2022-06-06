@@ -1,8 +1,15 @@
-const { products, categories } = require('../data');
-
 module.exports.Query = {
   hello: () => 'World!!',
-  products: () => products,
+  products: (parent, { filter }, { products }) => {
+    console.log('filter', filter);
+    let filteredProducts = products;
+    if (filter) {
+      if (filter.onSale === true) {
+        filteredProducts = filteredProducts.filter((product) => product.onSale);
+      }
+    }
+    return filteredProducts;
+  },
   product: (_parent, { id: productId }, context) => {
     const { products } = context;
     return products.find((product) => product.id === productId);
