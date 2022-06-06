@@ -4,9 +4,6 @@ module.exports.Query = {
   hello: () => 'World!!',
   products: () => products,
   product: (_parent, { id: productId }, context) => {
-    console.log('_parent', _parent);
-    console.log('productId', productId);
-    console.log('context', context);
     const { products } = context;
     return products.find((product) => product.id === productId);
   },
