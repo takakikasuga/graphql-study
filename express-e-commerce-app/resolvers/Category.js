@@ -6,7 +6,8 @@ module.exports.Category = {
     );
     let filteredCategoryProducts = categoryProducts;
     if (filter) {
-      if (filter.onSale === true) {
+      const { onSale } = filter;
+      if (onSale === true) {
         filteredCategoryProducts = filteredCategoryProducts.filter(
           (product) => product.onSale
         );
