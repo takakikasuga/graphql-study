@@ -67,5 +67,29 @@ exports.Mutation = {
     });
 
     return true;
+  },
+  deleteProduct: (_parent, { id }, { db }) => {
+    const productIndex = db.products.findIndex((product) => product.id === id);
+
+    if (productIndex === -1) {
+      throw new Error('Product not found');
+    }
+
+    db.products.splice(productIndex, 1);
+
+    db.reviews = db.reviews.filter((review) => review.productId !== id);
+
+    return true;
+  },
+  deleteReview: (_parent, { id }, { db }) => {
+    const reviewIndex = db.reviews.findIndex((review) => review.id === id);
+
+    if (reviewIndex === -1) {
+      throw new Error('Review not found');
+    }
+
+    db.reviews.splice(reviewIndex, 1);
+
+    return true;
   }
 };
