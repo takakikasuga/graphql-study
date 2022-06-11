@@ -30,7 +30,7 @@ module.exports.Query = {
     const { products } = context;
     return products.find((product) => product.id === productId);
   },
-  categories: () => categories,
+  categories: (_parent, _args, { categories }) => categories,
   category: (_parent, { id: categoryId }, context) => {
     console.log('categoryId', categoryId);
     const { categories } = context;
