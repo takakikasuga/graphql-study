@@ -5,7 +5,7 @@ module.exports.typeDefs = gql`
     # スカラー定義の場合タイプからNullを定義することになる。
     # Nullを許容しない場合は、「!(nonNullAssertion)」を付与する。
     hello: String!
-    products(filter: ProductsFilterInput!): [Product!]!
+    products(filter: ProductsFilterInput): [Product!]!
     product(id: ID!): Product
     categories: [Category!]!
     category(id: ID!): Category
@@ -14,6 +14,7 @@ module.exports.typeDefs = gql`
     addCategory(input: AddCategoryInput!): Category!
     addProduct(input: AddProductInput!): Product!
     addReview(input: AddReviewInput!): Review!
+    deleteCategory(id: ID!): Boolean!
   }
 
   type Product {

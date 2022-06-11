@@ -1,7 +1,7 @@
 module.exports.Category = {
-  products: (parent, { filter }, { products }) => {
+  products: (parent, { filter }, { db }) => {
     const categoryId = parent.id;
-    const categoryProducts = products.filter(
+    const categoryProducts = db.products.filter(
       (product) => product.categoryId === categoryId
     );
     let filteredCategoryProducts = categoryProducts;

@@ -1,12 +1,10 @@
 module.exports.Product = {
-  category: (parent, _args, context) => {
-    const { categories } = context;
+  category: (parent, _args, { db }) => {
     const categoryId = parent.categoryId;
-    return categories.find((category) => category.id === categoryId);
+    return db.categories.find((category) => category.id === categoryId);
   },
-  reviews: (parent, _args, { reviews }) => {
+  reviews: (parent, _args, { db }) => {
     console.log('parent', parent);
-    console.log('reviews', reviews);
-    return reviews.filter((review) => review.productId === parent.id);
+    return db.reviews.filter((review) => review.productId === parent.id);
   }
 };
