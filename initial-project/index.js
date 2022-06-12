@@ -21,7 +21,7 @@ const typeDefs = gql`
     cars(skip: Int!, take: Int!): [Car!]!
     name: String!
     image: Image!
-    bodyHtml: String!
+    description: String!
   }
 
   type Image {
