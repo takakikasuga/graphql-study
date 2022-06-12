@@ -17,22 +17,16 @@ const typeDefs = gql`
 
   type ManualGroup {
     Image
-    [GroupMembership]
+    [Car]
   }
 
   type AutomaticGroup {
     Image
-    [GroupMembership]
+    [Car]
     [AutomaticGroupFeature]
   }
 
   type AutomaticGroupFeature {}
-
-  # NOTE: Many to Many Relationships
-  type GroupMembership {
-    Group
-    Car
-  }
 `;
 
 const server = new ApolloServer({
