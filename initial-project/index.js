@@ -1,5 +1,9 @@
 const { ApolloServer, gql } = require('apollo-server');
 
+/**
+ *  @desc GraphQLのデザインパターン
+ *  @link https://github.com/Shopify/graphql-design-tutorial/blob/master/TUTORIAL.md
+ */
 const typeDefs = gql`
   type Query {
     cars: [Car!]!
@@ -12,31 +16,22 @@ const typeDefs = gql`
   }
 
   type ManualGroup {
-    id: ID!
-    name: String!
-    imageId: ID!
-    bodyHtml: String!
-    memberships: [GroupMembership!]!
+    Image
+    [GroupMembership]
   }
 
   type AutomaticGroup {
-    id: ID!
-    name: String!
-    imageId: ID!
-    bodyHtml: String!
-    memberships: [GroupMembership!]!
-    features: [AutomaticGroupFeature!]!
-    applyFeaturesSeparately: Boolean!
+    Image
+    [GroupMembership]
+    [AutomaticGroupFeature]
   }
 
-  type AutomaticGroupFeature {
-    column: String!
-  }
+  type AutomaticGroupFeature {}
 
   # NOTE: Many to Many Relationships
   type GroupMembership {
-    groupId: ID!
-    carId: ID!
+    Group
+    Car
   }
 `;
 
