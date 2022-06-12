@@ -15,18 +15,13 @@ const typeDefs = gql`
     make: String!
   }
 
-  type ManualGroup {
+  type Group {
     Image
     [Car]
+    [GroupFeatures]
   }
 
-  type AutomaticGroup {
-    Image
-    [Car]
-    [AutomaticGroupFeature]
-  }
-
-  type AutomaticGroupFeature {}
+  type GroupFeatures {}
 `;
 
 const server = new ApolloServer({
