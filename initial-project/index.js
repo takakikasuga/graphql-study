@@ -16,12 +16,18 @@ const typeDefs = gql`
   }
 
   type Group {
-    Image
-    [Car]
-    [GroupFeatures]
+    id: ID!
+    features: [GroupFeatures!]!
+    applyFeaturesSeparately: Boolean!
+    cars: [Car!]!
+    name: String!
+    imageId: ID!
+    bodyHtml: String!
   }
 
-  type GroupFeatures {}
+  type GroupFeatures {
+    feature: String!
+  }
 `;
 
 const server = new ApolloServer({
