@@ -17,8 +17,7 @@ const typeDefs = gql`
 
   type Group {
     id: ID!
-    features: [GroupFeatures!]!
-    applyFeaturesSeparately: Boolean!
+    featureSet: GroupFeatureSet
     cars: [Car!]!
     name: String!
     imageId: ID!
@@ -27,6 +26,11 @@ const typeDefs = gql`
 
   type GroupFeatures {
     feature: String!
+  }
+
+  type GroupFeatureSet {
+    features: [GroupFeatures!]!
+    applyFeaturesSeparately: Boolean!
   }
 `;
 
