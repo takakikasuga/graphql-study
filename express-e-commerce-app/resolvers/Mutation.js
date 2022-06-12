@@ -91,5 +91,56 @@ exports.Mutation = {
     db.reviews.splice(reviewIndex, 1);
 
     return true;
+  },
+  updateCategory: (_parent, { id, input }, { db }) => {
+    const categoryIndex = db.categories.findIndex(
+      (category) => category.id === id
+    );
+    console.log('categoryIndex === ', categoryIndex);
+    if (categoryIndex === -1) {
+      return null;
+    }
+
+    const { name } = input;
+    const updatedCategory = {
+      ...db.categories[categoryIndex],
+      name
+    };
+
+    db.categories[categoryIndex] = updatedCategory;
+
+    return updatedCategory;
+  },
+  updateProduct: (_parent, { id, input }, { db }) => {
+    const productIndex = db.products.findIndex((product) => product.id === id);
+
+    if (productIndex === -1) {
+      return null;
+    }
+
+    const updatedProduct = {
+      ...db.products[productIndex],
+      ...input
+    };
+
+    db.products[productIndex] = updatedProduct;
+
+    return updatedProduct;
+  },
+  updateReview: (_parent, { id, input }, { db }) => {
+    const reviewIndex = db.reviews.findIndex((review) => review.id === id);
+
+    if (reviewIndex === -1) {
+      return null;
+    }
+
+    const updatedReview = {
+      ...db.reviews[reviewIndex],
+      ...input
+    };
+
+    db.reviews[reviewIndex] = updatedReview;
+
+    return updatedReview;
   }
 };
