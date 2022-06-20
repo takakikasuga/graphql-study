@@ -1,4 +1,4 @@
-import type { Prisma } from '@prisma/client';
+import type { Post, Prisma } from '@prisma/client';
 import { PrismaClient } from '@prisma/client';
 
 export type Context = {
@@ -12,4 +12,11 @@ export type Context = {
 export type PostCreateArgs = {
   title: string;
   content: string;
+};
+
+export type PostPayloadType = {
+  userErrors: {
+    message: string;
+  }[];
+  post: Post | null;
 };
