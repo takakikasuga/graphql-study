@@ -1,9 +1,9 @@
-import type { Context, PostCreateArgs, PostPayloadType } from '../types';
+import type { Context, PostArgs, PostPayloadType } from '../types';
 
 export const Mutation = {
   postCreate: async (
     _: any,
-    { title, content }: PostCreateArgs,
+    { post: { title, content } }: PostArgs,
     { prisma }: Context
   ): Promise<PostPayloadType> => {
     if (!title || !content) {
@@ -22,6 +22,58 @@ export const Mutation = {
         title,
         content,
         authorId: 1
+      }
+    });
+
+    return {
+      userErrors: [],
+      post
+    };
+  },
+  postUpdate: async (
+    _: any,
+    {
+      postId,
+      post: { title, content }
+    }: { postId: string; post: PostArgs['post'] },
+    { prisma }: Context
+  ) => {
+    console.log({ postId, type: typeof postId });
+    if (!title && !content) {
+      return {
+        userErrors: [
+          {
+            message: 'Need to have at least on e field filled'
+          }
+        ],
+        post: null
+      };
+    }
+
+    const existingPost = await prisma.post.findUnique({
+      where: {
+        id: Number(postId)
+      }
+    });
+
+    if (!existingPost) {
+      return {
+        userErrors: [
+          {
+            message: 'Post does not exist'
+          }
+        ],
+        post: null
+      };
+    }
+
+    const post = await prisma.post.update({
+      where: {
+        id: Number(postId)
+      },
+      data: {
+        title,
+        content
       }
     });
 

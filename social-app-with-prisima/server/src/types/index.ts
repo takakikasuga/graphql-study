@@ -9,9 +9,11 @@ export type Context = {
   >;
 };
 
-export type PostCreateArgs = {
-  title: string;
-  content: string;
+export type PostArgs = {
+  post: {
+    title?: string;
+    content?: string;
+  };
 };
 
 export type PostPayloadType = {
