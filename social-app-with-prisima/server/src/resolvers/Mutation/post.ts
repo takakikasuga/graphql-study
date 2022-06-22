@@ -1,6 +1,6 @@
-import type { Context, PostArgs, PostPayloadType } from '../types';
+import type { Context, PostArgs, PostPayloadType } from '../../types';
 
-export const Mutation = {
+export const postResolvers = {
   postCreate: async (
     _: any,
     { post: { title, content } }: PostArgs,

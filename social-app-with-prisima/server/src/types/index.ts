@@ -22,3 +22,10 @@ export type PostPayloadType = {
   }[];
   post: Post | null;
 };
+
+export type SignupArgs = {
+  email: string;
+  name: string;
+  bio: string;
+  password: string;
+};
