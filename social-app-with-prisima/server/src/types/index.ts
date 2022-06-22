@@ -23,6 +23,13 @@ export type PostPayloadType = {
   post: Post | null;
 };
 
+export type UserPayloadType = {
+  userErrors: {
+    message: string;
+  }[];
+  user: null;
+};
+
 export type SignupArgs = {
   email: string;
   name: string;
