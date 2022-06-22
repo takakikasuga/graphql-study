@@ -27,7 +27,7 @@ export type UserPayloadType = {
   userErrors: {
     message: string;
   }[];
-  user: null;
+  token: string | null;
 };
 
 export type SignupArgs = {
