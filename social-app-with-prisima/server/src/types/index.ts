@@ -31,8 +31,17 @@ export type UserPayloadType = {
 };
 
 export type SignupArgs = {
-  email: string;
-  name: string;
+  credentials: {
+    email: string;
+    password: string;
+  };
   bio: string;
-  password: string;
+  name: string;
+};
+
+export type SigninArgs = {
+  credentials: {
+    email: string;
+    password: string;
+  };
 };
