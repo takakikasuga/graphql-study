@@ -4,15 +4,22 @@ export const postResolvers = {
   postCreate: async (
     _: any,
     { post: { title, content } }: PostArgs,
-    { prisma }: Context
+    { prisma, userInfo }: Context
   ): Promise<PostPayloadType> => {
-    if (!title || !content) {
+    if (!userInfo) {
       return {
         userErrors: [
           {
-            message: 'Title and content are required.'
+            message: 'Forbidden access (unauthenticated)'
           }
         ],
+        post: null
+      };
+    }
+
+    if (!title || !content) {
+      return {
+        userErrors: [],
         post: null
       };
     }
@@ -21,12 +28,17 @@ export const postResolvers = {
       data: {
         title,
         content,
-        authorId: 1
+        authorId: userInfo.userId
       }
     });
-
+    console.log(post);
+    console.log(userInfo);
     return {
-      userErrors: [],
+      userErrors: [
+        {
+          message: 'Title and content are required.'
+        }
+      ],
       post
     };
   },

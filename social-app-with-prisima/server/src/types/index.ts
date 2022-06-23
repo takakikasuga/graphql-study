@@ -7,6 +7,9 @@ export type Context = {
     never,
     Prisma.RejectOnNotFound | Prisma.RejectPerOperation | undefined
   >;
+  userInfo: {
+    userId: number;
+  } | null;
 };
 
 export type PostArgs = {
