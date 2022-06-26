@@ -15,14 +15,22 @@ export const Query = {
   profile: async (
     _: any,
     { userId }: { userId: string },
-    { prisma }: Context
+    { prisma, userInfo }: Context
   ) => {
     console.log('profile');
-    return await prisma.profile.findUnique({
+    const isMyProfile = Number(userId) === userInfo?.userId;
+    const profile = await prisma.profile.findUnique({
       where: {
         userId: Number(userId)
       }
     });
+
+    if (!profile) return null;
+
+    return {
+      ...profile,
+      isMyProfile
+    };
   },
   posts: async (_: any, __: any, { prisma }: Context) => {
     const posts = await prisma.post.findMany({
