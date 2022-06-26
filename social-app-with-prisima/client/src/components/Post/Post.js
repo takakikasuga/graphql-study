@@ -1,5 +1,5 @@
-import React from "react";
-import "./Post.css";
+import React from 'react';
+import './Post.css';
 
 export default function Post({
   title,
@@ -8,28 +8,27 @@ export default function Post({
   user,
   published,
   id,
-  isMyProfile,
+  isMyProfile
 }) {
   const formatedDate = new Date(Number(date));
   return (
     <div
-      className="Post"
-      style={published === false ? { backgroundColor: "hotpink" } : {}}
-    >
+      className='Post'
+      style={published === false ? { backgroundColor: 'hotpink' } : {}}>
       {isMyProfile && published === false && (
-        <p className="Post__publish" onClick={() => {}}>
+        <p className='Post__publish' onClick={() => {}}>
           publish
         </p>
       )}
       {isMyProfile && published === true && (
-        <p className="Post__publish" onClick={() => {}}>
+        <p className='Post__publish' onClick={() => {}}>
           unpublish
         </p>
       )}
-      <div className="Post__header-container">
+      <div className='Post__header-container'>
         <h2>{title}</h2>
         <h4>
-          Created At {`${formatedDate}`.split(" ").splice(0, 3).join(" ")} by{" "}
+          Created At {`${formatedDate}`.split(' ').splice(0, 3).join(' ')} by{' '}
           {user}
         </h4>
       </div>
