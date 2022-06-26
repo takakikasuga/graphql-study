@@ -48,3 +48,9 @@ export type SigninArgs = {
     password: string;
   };
 };
+
+export type ProfileParentType = {
+  id: number;
+  bio: string;
+  userId: number;
+};

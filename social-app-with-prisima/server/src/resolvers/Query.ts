@@ -12,6 +12,18 @@ export const Query = {
       }
     });
   },
+  profile: async (
+    _: any,
+    { userId }: { userId: string },
+    { prisma }: Context
+  ) => {
+    console.log('profile');
+    return await prisma.profile.findUnique({
+      where: {
+        userId: Number(userId)
+      }
+    });
+  },
   posts: async (_: any, __: any, { prisma }: Context) => {
     const posts = await prisma.post.findMany({
       orderBy: [
