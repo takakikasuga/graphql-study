@@ -52,18 +52,22 @@ export default function Profile() {
         <div>{profile.isMyProfile ? <AddPostModal /> : null}</div>
       </div>
       <div>
-        {profile.user.posts.map(({ title, content, createdAt, id }) => {
-          return (
-            <Post
-              key={id}
-              id={id}
-              title={title}
-              content={content}
-              date={createdAt}
-              user={profile.user.name}
-            />
-          );
-        })}
+        {profile.user.posts.map(
+          ({ title, content, createdAt, id, published }) => {
+            return (
+              <Post
+                key={id}
+                id={id}
+                title={title}
+                content={content}
+                date={createdAt}
+                user={profile.user.name}
+                published={published}
+                isMyProfile={profile.isMyProfile}
+              />
+            );
+          }
+        )}
       </div>
     </div>
   );
