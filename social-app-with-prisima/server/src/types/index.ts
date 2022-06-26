@@ -1,4 +1,4 @@
-import type { Post, Prisma } from '@prisma/client';
+import type { Post, Prisma, User } from '@prisma/client';
 import { PrismaClient } from '@prisma/client';
 
 export type Context = {
@@ -62,3 +62,5 @@ export type PostParentType = {
 export type UserParentType = {
   id: number;
 };
+
+export type BatchUsers = (ids: number[]) => Promise<User[]>;

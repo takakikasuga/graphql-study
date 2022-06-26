@@ -35,11 +35,7 @@ export const postResolvers = {
     console.log(post);
     console.log(userInfo);
     return {
-      userErrors: [
-        {
-          message: 'Title and content are required.'
-        }
-      ],
+      userErrors: [],
       post
     };
   },
