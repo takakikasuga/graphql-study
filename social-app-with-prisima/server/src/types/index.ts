@@ -54,3 +54,11 @@ export type ProfileParentType = {
   bio: string;
   userId: number;
 };
+
+export type PostParentType = {
+  authorId: number;
+};
+
+export type UserParentType = {
+  id: number;
+};
