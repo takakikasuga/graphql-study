@@ -1,0 +1,62 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type ImpressionModel {
+  id: ID!
+  sticker: String!
+  comment: String
+  twitterId: String
+  postId: String!
+  createdAt: DateTime
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type PostModel {
+  id: String!
+  title: String!
+  emoji: String
+  type: PostType!
+  thumbNailUrl: String
+  excerpt: String
+  contentPath: String!
+  md5Hash: String!
+  published: Boolean
+  publishDate: DateTime
+  like: Int!
+  impressions: [ImpressionModel!]!
+}
+
+enum PostType {
+  article
+  diary
+}
+
+type Query {
+  fixedPosts: [PostModel!]!
+  posts(type: [PostType!]): [PostModel!]
+  envs: String!
+  port: Int!
+  findPost(contentPath: String, id: String): PostModel!
+  impressions(postId: String, first: Int, sortAs: SortAs = desc): [ImpressionModel!]
+}
+
+enum SortAs {
+  asc
+  desc
+}
+
+type Mutation {
+  addImpressions(input: CreateImpressionInput!): ImpressionModel
+}
+
+input CreateImpressionInput {
+  postId: String!
+  sticker: String!
+  comment: String
+  twitterId: String
+}
