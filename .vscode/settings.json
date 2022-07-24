@@ -1,6 +1,9 @@
 {
   "eslint.workingDirectories": [
     "./express-e-commerce-app",
-    "./nest-e-commerce-app"
+    "./nest-e-commerce-app",
+    "./graphql-nest-prisma",
+    "./nest-graphql-prisma",
+    "./employee-gql-service"
   ]
 }
